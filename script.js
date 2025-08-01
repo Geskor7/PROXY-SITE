@@ -1,14 +1,13 @@
 // --- START: YOUR CUSTOM QUOTES ---
 const myQuotes = [
-       { quote: "I eat sand", author: "" }
+    { quote: "i eat sand", author: "" }
 ];
-
 // --- END: YOUR CUSTOM QUOTES ---
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
-const DISCORD_USER_ID = '1356334846351245515';
+const DISCORD_USER_ID = 'YOUR_DISCORD_ID_HERE';
 const OPENWEATHER_API_KEY = 'YOUR_OPENWEATHER_API_KEY_HERE'; 
-const CITY_NAME = 'Femboy island';
+const CITY_NAME = 'Femboy Island';
 // --- END CONFIGURATION ---
 
 let activityCarouselInterval = null;
