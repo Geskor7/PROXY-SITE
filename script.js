@@ -1,13 +1,15 @@
 // --- START: YOUR CUSTOM QUOTES ---
 const myQuotes = [
-    { quote: "enzy is the goat", author: "" }
+    { quote: "print " "hello world" " ", author: "" }
+];
+    { quote: "i eat sand" ", author: "" }
 ];
 // --- END: YOUR CUSTOM QUOTES ---
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
-const DISCORD_USER_ID = 'YOUR_DISCORD_ID_HERE';
+const DISCORD_USER_ID = '1356334846351245515';
 const OPENWEATHER_API_KEY = 'YOUR_OPENWEATHER_API_KEY_HERE'; 
-const CITY_NAME = 'Kandy';
+const CITY_NAME = 'Femboy island';
 // --- END CONFIGURATION ---
 
 let activityCarouselInterval = null;
@@ -364,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
     typeWriterStart();
 
-    const name = "enzy";
+    const name = "ℜ𝔄𝔛";
     let nameText = '';
     let nameIndex = 0;
     let isNameDeleting = false;
