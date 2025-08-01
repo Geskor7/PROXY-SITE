@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
     typeWriterStart();
 
-    const name = "ℜ𝔄𝔛";
+    const name = "RAX";
     let nameText = '';
     let nameIndex = 0;
     let isNameDeleting = false;
