@@ -1,9 +1,8 @@
 // --- START: YOUR CUSTOM QUOTES ---
 const myQuotes = [
-    { quote: "print " "hello world" " ", author: "" }
+       { quote: "I eat sand", author: "" }
 ];
-    { quote: "i eat sand" ", author: "" }
-];
+
 // --- END: YOUR CUSTOM QUOTES ---
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
