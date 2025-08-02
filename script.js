@@ -7,7 +7,7 @@ const myQuotes = [
 // --- CONFIGURATION - REPLACE THESE VALUES ---
 const DISCORD_USER_ID = '1356334846351245515';
 const OPENWEATHER_API_KEY = 'YOUR_OPENWEATHER_API_KEY_HERE'; 
-const CITY_NAME = 'Kandy'; // real city for API
+const CITY_NAME = 'China'; // real city for API
 const DISPLAY_CITY_NAME = 'Femboy Island'; // used in UI
 // --- END CONFIGURATION ---
 
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
     typeWriterStart();
 
-    const name = "RAX";
+    const name = "ℜ𝔄𝔛";
     let nameText = '';
     let nameIndex = 0;
     let isNameDeleting = false;
