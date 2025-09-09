@@ -258,11 +258,15 @@ document.addEventListener('DOMContentLoaded', () => {
             trailIntervalId = null;
         }
     }
-    async function fetchWeather() {
-    // Always show X_X, no matter what
-    weatherTemp.textContent = 'X_X';
     
-    // Optional: if you still want the weather icon, keep this part
+    async function fetchWeather() {
+    // Instead of setting temperature from API, just force it to X_X
+    weatherTemp.textContent = 'X_X';
+
+    // If you want to REMOVE the weather icon completely:
+    // weatherIcon.style.display = "none";
+
+    // If you want to KEEP showing the weather icon, leave the API logic:
     if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
         console.warn("OpenWeather API key not set. Skipping weather fetch.");
         return;
@@ -275,14 +279,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
         const data = await response.json();
 
+        // Still show icon if you want
         weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         weatherIcon.alt = data.weather[0].description;
 
+        // ✅ IMPORTANT: Do NOT set weatherTemp here. Leave it as X_X.
+
     } catch (error) {
-        console.error("Why are you looking at this?:", error);
-        // temp is already set to X_X, so no need to change it
+        console.error("Weather fetch failed:", error);
+        // It's already X_X, so no change needed.
     }
 }
+
 
     function handleStartInteraction(event) {
         event.preventDefault();
