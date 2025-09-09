@@ -258,36 +258,31 @@ document.addEventListener('DOMContentLoaded', () => {
             trailIntervalId = null;
         }
     }
+    async function fetchWeather() {
+    // Always show X_X, no matter what
+    weatherTemp.textContent = 'X_X';
     
-    function updateLocalTime() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('en-US', {
-            timeZone: 'Asia/Colombo',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
-        });
-        localTime.textContent = timeString;
+    // Optional: if you still want the weather icon, keep this part
+    if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
+        console.warn("OpenWeather API key not set. Skipping weather fetch.");
+        return;
     }
 
-    async function fetchWeather() {
-        if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
-            console.warn("OpenWeather API key not set. Skipping weather fetch.");
-            return;
-        }
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${OPENWEATHER_API_KEY}&units=metric`;
-        
-        try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
-            const data = await response.json();
-            weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-            weatherIcon.alt = data.weather[0].description;
-        } catch (error) {
-            console.error("Why are you looking at this?:", error);
-            weatherTemp.textContent = 'X_X';
-        }
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${OPENWEATHER_API_KEY}&units=metric`;
+    
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
+        const data = await response.json();
+
+        weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+        weatherIcon.alt = data.weather[0].description;
+
+    } catch (error) {
+        console.error("Why are you looking at this?:", error);
+        // temp is already set to X_X, so no need to change it
     }
+}
 
     function handleStartInteraction(event) {
         event.preventDefault();
