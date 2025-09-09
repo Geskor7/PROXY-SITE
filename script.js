@@ -6,9 +6,9 @@ const myQuotes = [
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
 const DISCORD_USER_ID = '1356334846351245515';
-const OPENWEATHER_API_KEY = 'YOUR_OPENWEATHER_API_KEY_HERE'; 
-const CITY_NAME = 'China'; // real city for API
-const DISPLAY_CITY_NAME = 'Femboy Island'; // used in UI
+const OPENWEATHER_API_KEY = 'no'; 
+const CITY_NAME = 'no'; // real city for API
+const DISPLAY_CITY_NAME = 'UNKNOWN'; // used in UI
 // --- END CONFIGURATION ---
 
 let activityCarouselInterval = null;
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initializeVisitorCounter();
 
-    const startMessage = "Click here to wake up the pixels!";
+    const startMessage = "​🇨​​🇱​​🇮​​🇨​​🇰​ ​🇭​​🇪​​🇷​​🇪​ ​🇹​​🇴​ ​🇪​​🇳​​🇹​​🇪​​🇷​.";
     let startTextContent = '';
     let startIndex = 0;
     let startCursorVisible = true;
