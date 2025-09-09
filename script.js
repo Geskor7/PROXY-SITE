@@ -259,38 +259,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+    function updateLocalTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', {
+            timeZone: 'Asia/Colombo',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        });
+        localTime.textContent = timeString;
+    }
+
     async function fetchWeather() {
-    // Instead of setting temperature from API, just force it to X_X
-    weatherTemp.textContent = 'X_X';
-
-    // If you want to REMOVE the weather icon completely:
-    // weatherIcon.style.display = "none";
-
-    // If you want to KEEP showing the weather icon, leave the API logic:
-    if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
-        console.warn("OpenWeather API key not set. Skipping weather fetch.");
-        return;
+        if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
+            console.warn("OpenWeather API key not set. Skipping weather fetch.");
+            return;
+        }
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${OPENWEATHER_API_KEY}&units=metric`;
+        
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
+            const data = await response.json();
+            weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            weatherIcon.alt = data.weather[0].description;
+        } catch (error) {
+            console.error("Why are you looking at this?:", error);
+            weatherTemp.textContent = 'X_X';
+        }
     }
-
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${OPENWEATHER_API_KEY}&units=metric`;
-    
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
-        const data = await response.json();
-
-        // Still show icon if you want
-        weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-        weatherIcon.alt = data.weather[0].description;
-
-        // ✅ IMPORTANT: Do NOT set weatherTemp here. Leave it as X_X.
-
-    } catch (error) {
-        console.error("Weather fetch failed:", error);
-        // It's already X_X, so no change needed.
-    }
-}
-
 
     function handleStartInteraction(event) {
         event.preventDefault();
