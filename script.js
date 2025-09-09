@@ -273,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchWeather() {
         if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
             console.warn("OpenWeather API key not set. Skipping weather fetch.");
-            weatherTemp.textContent = "N/A";
             return;
         }
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${OPENWEATHER_API_KEY}&units=metric`;
