@@ -287,8 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
             weatherIcon.alt = data.weather[0].description;
         } catch (error) {
-            console.error("Failed to fetch weather data:", error);
-            weatherTemp.textContent = 'Error';
+            console.error("Why are you looking at this?:", error);
+            weatherTemp.textContent = 'X_X';
         }
     }
 
