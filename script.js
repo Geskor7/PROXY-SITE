@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initializeVisitorCounter();
 
-    const startMessage = "​🇨​​🇱​​🇮​​🇨​​🇰​ ​🇭​​🇪​​🇷​​🇪​ ​🇹​​🇴​ ​🇪​​🇳​​🇹​​🇪​​🇷​.";
+    const startMessage = "​Click here to enter.";
     let startTextContent = '';
     let startIndex = 0;
     let startCursorVisible = true;
