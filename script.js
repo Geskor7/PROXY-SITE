@@ -6,7 +6,6 @@ const myQuotes = [
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
 const DISCORD_USER_ID = '1356334846351245515';
-const OPENWEATHER_API_KEY = 'no'; 
 const CITY_NAME = 'no'; // real city for API
 const DISPLAY_CITY_NAME = 'UNKNOWN'; // used in UI
 // --- END CONFIGURATION ---
