@@ -282,8 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
             const data = await response.json();
-            
-            weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
             weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
             weatherIcon.alt = data.weather[0].description;
         } catch (error) {
