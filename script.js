@@ -281,8 +281,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
             const data = await response.json();
-            weatherIcon.src = "assets/weatherIcon.png";
-            weatherIcon.alt = "Weather icon";
+if (weatherIcon) {
+    weatherIcon.src = "./assets/weatherIcon.png"; // relative to index.html
+    weatherIcon.alt = "Weather icon";
+}
+
         } catch (error) {
             console.error("Why are you looking at this?:", error);
             weatherTemp.textContent = 'X_X';
