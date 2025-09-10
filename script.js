@@ -2,10 +2,6 @@
 const myQuotes = [
     { quote: "i eat sand", author: "RAX" }
 ];
- { quote: "suck my femboy cock", author: "RAX" }
-];
- { quote: "mrow meoeowowwow meeoeoeroororww OwO", author: "RAX" }
-];
 // --- END: YOUR CUSTOM QUOTES ---
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
@@ -285,11 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
             const data = await response.json();
-
-            const weatherIcon = document.getElementById("weatherIcon");
-weatherIcon.src = "assets/sun.png";  // path relative to index.html
-weatherIcon.alt = "QwQ";
-
+          weatherIcon.src = " weatherIcon.png";
+weatherIcon.alt = "X_X";
 
         } catch (error) {
             console.error("Why are you looking at this?:", error);
