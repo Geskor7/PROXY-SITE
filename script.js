@@ -2,6 +2,10 @@
 const myQuotes = [
     { quote: "i eat sand", author: "RAX" }
 ];
+ { quote: "suck my femboy cock", author: "RAX" }
+];
+ { quote: "mrow meoeowowwow meeoeoeroororww OwO", author: "RAX" }
+];
 // --- END: YOUR CUSTOM QUOTES ---
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
