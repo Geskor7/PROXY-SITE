@@ -270,27 +270,23 @@ document.addEventListener('DOMContentLoaded', () => {
         localTime.textContent = timeString;
     }
 
-    async function fetchWeather() {
-        if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
-            console.warn("OpenWeather API key not set. Skipping weather fetch.");
-            return;
-        }
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${OPENWEATHER_API_KEY}&units=metric`;
-        
-        try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
-            const data = await response.json();
-if (weatherIcon) {
-    weatherIcon.src = "./assets/weatherIcon.png"; // relative to index.html
-    weatherIcon.alt = "Weather icon";
-}
+   async function fetchWeather(weatherIcon) {
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
+        const data = await response.json();
 
-        } catch (error) {
-            console.error("Why are you looking at this?:", error);
-            weatherTemp.textContent = 'X_X';
+        if (weatherIcon) {
+            weatherIcon.src = "assets/weatherIcon.png";
+            weatherIcon.alt = "Weather icon";
         }
+
+    } catch (error) {
+        console.error("Why are you looking at this?:", error);
+        const weatherTemp = document.getElementById('weather-temp');
+        if (weatherTemp) weatherTemp.textContent = 'X_X';
     }
+}
 
     function handleStartInteraction(event) {
         event.preventDefault();
