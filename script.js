@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const customCursor = document.querySelector('.custom-cursor');
     const cursor = customCursor;
     const localTime = document.getElementById('local-time');
-    const weatherIcon = document.getElementById('weather-icon');
+   
    
     
     // Initialize audio player and add event listeners
@@ -262,24 +262,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateLocalTime() {
         const now = new Date();
         const timeString = now.toLocaleTimeString('en-US', {
-            timeZone: 'Asia/Colombo',
-            hour: '2-digit',
-            minute: '2-digit',
+            timeZone: false
+            hour: 'false
+            minute: false
             hour12: true
         });
         localTime.textContent = timeString;
     }
-
-   async function fetchWeather(weatherIcon) {
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
-        const data = await response.json();
-
-        if (weatherIcon) {
-            weatherIcon.src = "assets/weatherIcon.png";
-            weatherIcon.alt = "Weather icon";
-        }
 
     } catch (error) {
         console.error("Why are you looking at this?:", error);
