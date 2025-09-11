@@ -571,28 +571,51 @@
                 
                 <div class="footer-bottom-row">
 
-                <div class="location-info">
-  <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-  </svg>
-  <span>UNKNOWN</span>
-  <span class="info-separator">|</span>
-  <span id="local-time">X_X</span>
-  <span class="info-separator">|</span>
+  <div class="location-info">
+    <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+    </svg>
 
-  <!-- weather info block -->
-  <div id="weather-info">
-    <img id="weather-icon" src="assets/sunny.png" alt="Weather Icon" style="width: 24px; height: 24px; vertical-align: middle;">
-    <span id="weather-temp">X_X</span>
+    <span>UNKNOWN</span>
+    <span class="info-separator">|</span>
+    <span id="local-time">X_X</span>
+    <span class="info-separator">|</span>
+
+    <!-- weather info block -->
+    <span id="weather-info">
+      <img id="weather-icon" src="assets/sunny.png" alt="Weather Icon"
+           style="width: 24px; height: 24px; vertical-align: middle;">
+      <span id="weather-temp">X_X</span>
+    </span>
   </div>
 </div>
-        <div class="controls-dock"><div class="volume-control"><svg id="volume-icon" class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg><input id="volume-slider" class="slider" type="range" min="0" max="1" step="0.01" value="0.3"></div><div class="transparency-control"><svg id="transparency-icon" class="transparency-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg><input id="transparency-slider" class="slider" type="range" min="0" max="1" step="0.01" value="0.6"></div></div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <audio id="track-preview-player"></audio>
-    <script src="script.js"></script>
+
+<div class="controls-dock">
+  <div class="volume-control">
+    <svg id="volume-icon" class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+    </svg>
+    <input id="volume-slider" class="slider" type="range" min="0" max="1" step="0.01" value="0.3">
+  </div>
+
+  <div class="transparency-control">
+    <svg id="transparency-icon" class="transparency-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+    </svg>
+    <input id="transparency-slider" class="slider" type="range" min="0" max="1" step="0.01" value="0.6">
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<audio id="track-preview-player"></audio>
+<script src="script.js"></script>
 </body>
 </html>
+
+
+
+
 
 
