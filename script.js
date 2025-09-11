@@ -262,9 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateLocalTime() {
         const now = new Date();
         const timeString = now.toLocaleTimeString('en-US', {
-            timeZone: false
-            hour: 'false
-            minute: false
+            timeZone: 'Asia/Colombo',
+            hour: '2-digit'
+            minute: '2-digit',
             hour12: true
         });
         localTime.textContent = timeString;
