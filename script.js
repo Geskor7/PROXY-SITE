@@ -1,6 +1,6 @@
 // --- START: YOUR CUSTOM QUOTES ---
 const myQuotes = [
-    { quote: "i eat sand", author: "RAX" }
+    { quote: "i eat sand", author: "RAX" }, { quote: "i like eating dirt too :D", author: "RAX" }, { quote: "UHHHH... RTGNJKHJKNRTJOUKTH", author: "RAX" }
 ];
 // --- END: YOUR CUSTOM QUOTES ---
 
