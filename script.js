@@ -164,9 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const customCursor = document.querySelector('.custom-cursor');
     const cursor = customCursor;
     const localTime = document.getElementById('local-time');
-   
-   
+    const weatherIcon = document.getElementById('weather-icon');
+    const weatherTemp = document.getElementById('weather-temp');
     
+
     // Initialize audio player and add event listeners
     audioPlayer = document.getElementById('track-preview-player');
     const trackListEl = document.getElementById('spotify-track-list');
