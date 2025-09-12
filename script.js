@@ -1,7 +1,7 @@
 // --- START: YOUR CUSTOM QUOTES ---
 const myQuotes = const quotes = [
   { quote: 'There’s no place like 127.0.0.1', author: 'Austin Freeman' },
-  { quote: 'doing "𝗻𝗺𝗮𝗽 -𝗧𝟰 127.0.0.1" doesnt make you scary', author: 'r' },
+  { quote: 'doing "𝔫map -𝗧𝟰 127.0.0.1" doesnt make you scary', author: 'r' },
   { quote: "i want sprite :'(", author: 'RAX' }
 ];
 
