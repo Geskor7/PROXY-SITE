@@ -368,10 +368,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
     typeWriterStart();
 
-    const name = "RAXYS";
+    const name = "RAX";
     let nameText = '';
     let nameIndex = 0;
-    let isNameDeleting = true;
+    let isNameDeleting = false;
     let nameCursorVisible = true;
 
     function typeWriterName() {
@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeWriterName, 10000);
             return;
         } else if (nameIndex === 0) {
-            isNameDeleting = true;
+            isNameDeleting = false;
         }
         profileName.textContent = nameText + (nameCursorVisible ? '|' : ' ');
         if (Math.random() < 0.1) {
