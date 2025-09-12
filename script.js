@@ -1,13 +1,13 @@
 // --- START: YOUR CUSTOM QUOTES ---
 const myQuotes = [
-    { quote: "enzy is the goat", author: "" }
+    { quote: "test 1", author: "john" },{ quote: "test 2", author: "jake" },{ quote: "test 3", author: "jack" },{ quote: "test 4", author: "james" },{ quote: "test 5", author: "jane" }
 ];
 // --- END: YOUR CUSTOM QUOTES ---
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
-const DISCORD_USER_ID = 'YOUR_DISCORD_ID_HERE';
+const DISCORD_USER_ID = '1356334846351245515';
 const OPENWEATHER_API_KEY = 'YOUR_OPENWEATHER_API_KEY_HERE'; 
-const CITY_NAME = 'Kandy';
+const CITY_NAME = 'UNKNOWN';
 // --- END CONFIGURATION ---
 
 let activityCarouselInterval = null;
@@ -273,10 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchWeather() {
         if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
             console.warn("OpenWeather API key not set. Skipping weather fetch.");
-            weatherTemp.textContent = "N/A";
+            weatherTemp.textContent = "X_X";
             return;
         }
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${OPENWEATHER_API_KEY}&units=metric`;
+        const apiUrl = ``;
         
         try {
             const response = await fetch(apiUrl);
@@ -284,11 +284,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             
             weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
-            weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            weatherIcon.src = ``;
             weatherIcon.alt = data.weather[0].description;
         } catch (error) {
             console.error("Failed to fetch weather data:", error);
-            weatherTemp.textContent = 'Error';
+            weatherTemp.textContent = 'X_X';
         }
     }
 
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initializeVisitorCounter();
 
-    const startMessage = "Click here to wake up the pixels!";
+    const startMessage = "Click here to enter.";
     let startTextContent = '';
     let startIndex = 0;
     let startCursorVisible = true;
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
     typeWriterStart();
 
-    const name = "enzy";
+    const name = "RAX";
     let nameText = '';
     let nameIndex = 0;
     let isNameDeleting = false;
