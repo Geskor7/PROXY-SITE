@@ -4,41 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-const fullTitle = "rax"; // The full title you want to animate
-let current = "";
-let adding = true; // Are we typing or deleting?
+const titles = ["r", "ra", "rax", "ra", "r"]; // sequence of title frames
 let index = 0;
+let fps = 10; // higher = faster animation
 
 function animateTitle() {
-    if (adding) {
-        // Add one character
-        current += fullTitle.charAt(index);
-        index++;
-        if (index === fullTitle.length) adding = false; // Switch to deleting
-    } else {
-        // Remove one character
-        current = current.slice(0, -1);
-        if (current.length === 0) {
-            adding = true;
-            index = 0; // Restart typing
-        }
-    }
-
-    document.title = current;
-
-    // Adjust speed: slower when deleting
-    let timeout = adding ? 200 : 100;
-    setTimeout(animateTitle, timeout);
+    document.title = titles[index];
+    index = (index + 1) % titles.length;
+    setTimeout(animateTitle, 1000 / fps); // smooth timing
 }
 
-// Start animation after page loads
+// Start after page load
 window.addEventListener("load", () => {
     animateTitle();
 });
 </script>
-
-
-
 
 
 
