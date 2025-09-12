@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-const titleText = "rax";
+const titleText = "R A X";
 const safeChar = "\u200B"; // zero-width space so title never empty
 
 function smoothTitleAnimation() {
@@ -12,7 +12,7 @@ function smoothTitleAnimation() {
 
     gsap.to(progress, {
         value: titleText.length,
-        duration: 1000000,
+        duration: 1.5,
         ease: "power1.inOut",
         repeat: -1,
         yoyo: true,
