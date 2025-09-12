@@ -4,17 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <script>
-  const titleSequence = ["r", "ra", "rax", "ra", "r", "ra", "r", "rax"];
+  const fullTitle = "rax"; // full title you want
+  let current = "";
   let index = 0;
+  let forward = true; // typing forward or deleting
 
-  function animateTitle() {
-    document.title = titleSequence[index];
-    index = (index + 1) % titleSequence.length;
+  function typeTitle() {
+    if (forward) {
+      current += fullTitle[index];
+      index++;
+      if (index === fullTitle.length) forward = false; // start deleting
+    } else {
+      current = current.slice(0, -1);
+      if (current.length === 0) forward = true; index = 0; // start typing again
+    }
+    document.title = current;
   }
 
-  // Start immediately, not waiting for full load
-  setInterval(animateTitle, 500);
+  setInterval(typeTitle, 300); // 300ms per step, adjust for speed
 </script>
+
 
 </head>
 
