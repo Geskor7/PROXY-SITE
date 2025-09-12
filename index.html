@@ -3,7 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝕽𝕬𝖃</title>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>r</title> <!-- initial title -->
+  <script>
+    // Sequence of title changes
+    const titleSequence = ["r", "ra", "rax", "ra", "r", "ra", "r", "rax"];
+    let index = 0;
+
+    function animateTitle() {
+      document.title = titleSequence[index];
+      index = (index + 1) % titleSequence.length;
+    }
+
+    // Start the animation after the page loads
+    window.onload = function() {
+      setInterval(animateTitle, 500); // update every 500ms
+    };
+  </script>
+</head>
+<body>
+  <h1>Check your browser tab for the animated title!</h1>
+</body>
+</html>
     <!-- ADD THIS LINE FOR THE FAVICON -->
     <link rel="icon" type="image/png" href="assets/favitcon.png">
     
