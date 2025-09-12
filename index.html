@@ -3,26 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <script>
+<script>
   const fullTitle = "rax"; // full title you want
   let current = "";
   let index = 0;
   let forward = true; // typing forward or deleting
+  let cursorVisible = true; // for blinking
 
   function typeTitle() {
+    // Type or delete letters
     if (forward) {
       current += fullTitle[index];
       index++;
       if (index === fullTitle.length) forward = false; // start deleting
     } else {
       current = current.slice(0, -1);
-      if (current.length === 0) forward = true; index = 0; // start typing again
+      if (current.length === 0) {
+        forward = true; 
+        index = 0; // start typing again
+      }
     }
-    document.title = current;
+
+    // Add blinking cursor
+    const cursor = cursorVisible ? "|" : " ";
+    document.title = current + cursor;
   }
 
-  setInterval(typeTitle, 300); // 300ms per step, adjust for speed
+  // Update cursor visibility every 500ms for blinking
+  setInterval(() => {
+    cursorVisible = !cursorVisible;
+  }, 500);
+
+  // Update title every 300ms for typing/deleting
+  setInterval(typeTitle, 300);
 </script>
+
 
 
 </head>
