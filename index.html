@@ -4,34 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-const fullText = "rax"; // final word
+const fullTitle = "rax"; // The full title you want to animate
 let current = "";
-let forward = true;
+let adding = true; // Are we typing or deleting?
 let index = 0;
 
 function animateTitle() {
-    if (forward) {
-        // add a character
-        current = fullText.slice(0, index + 1);
+    if (adding) {
+        // Add one character
+        current += fullTitle.charAt(index);
         index++;
-        if (index >= fullText.length) forward = false; // start deleting
+        if (index === fullTitle.length) adding = false; // Switch to deleting
     } else {
-        // remove a character
-        index--;
-        current = fullText.slice(0, index);
-        if (index <= 0) forward = true; // start typing again
+        // Remove one character
+        current = current.slice(0, -1);
+        if (current.length === 0) {
+            adding = true;
+            index = 0; // Restart typing
+        }
     }
 
     document.title = current;
 
-    // Random interval for a glitchy, smooth effect
-    const interval = 150 + Math.random() * 150; // 150ms to 300ms
-    setTimeout(animateTitle, interval);
+    // Adjust speed: slower when deleting
+    let timeout = adding ? 200 : 100;
+    setTimeout(animateTitle, timeout);
 }
 
-// Start animation after page load
-window.onload = animateTitle;
+// Start animation after page loads
+window.addEventListener("load", () => {
+    animateTitle();
+});
 </script>
+
 
 
 
