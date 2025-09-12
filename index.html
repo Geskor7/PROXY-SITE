@@ -4,40 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-const titleText = "rax"; // text to animate
-let display = "";
-let position = 0;
-let direction = 1; // 1 = typing, -1 = deleting
-const speed = 150; // ms per step
-const pause = 800; // pause at full text
-const safeChar = "\u200B"; // invisible zero-width space, never empty
+const titleText = "rax";
+const safeChar = "\u200B"; // zero-width space so title never empty
 
-function animateTitle() {
-    // Update displayed text
-    display = titleText.slice(0, position);
-    document.title = display || safeChar;
+function smoothTitleAnimation() {
+    let progress = { value: 0 };
 
-    // Update position
-    if (direction === 1) {
-        if (position < titleText.length) {
-            position++;
-            setTimeout(animateTitle, speed);
-        } else {
-            direction = -1;
-            setTimeout(animateTitle, pause);
+    gsap.to(progress, {
+        value: titleText.length,
+        duration: 1.5,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+        onUpdate: () => {
+            const chars = Math.round(progress.value);
+            document.title = titleText.slice(0, chars) || safeChar;
         }
-    } else {
-        if (position > 0) {
-            position--;
-            setTimeout(animateTitle, speed);
-        } else {
-            direction = 1;
-            setTimeout(animateTitle, speed);
-        }
-    }
+    });
 }
 
-window.addEventListener("load", animateTitle);
+window.addEventListener("load", smoothTitleAnimation);
 </script>
 
 
