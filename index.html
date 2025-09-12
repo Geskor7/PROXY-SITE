@@ -8,37 +8,36 @@ const fullText = "rax"; // text to animate
 let current = "";
 let index = 0;
 let forward = true; // typing or deleting
-const typingSpeed = 150; // ms per letter when typing
-const deletingSpeed = 100; // ms per letter when deleting
-const pauseTime = 700; // pause at full text
+const typingSpeed = 200; // ms per letter
+const deletingSpeed = 150; // ms per letter when deleting
+const pauseTime = 800; // pause at full text
+const placeholder = "\u200B"; // zero-width space to prevent empty title
 
 function animateTitle() {
     if (forward) {
         current += fullText[index];
-        index++;
         document.title = current;
+        index++;
         if (index === fullText.length) {
             forward = false;
-            setTimeout(animateTitle, pauseTime); // pause at full text
-            return;
+            setTimeout(animateTitle, pauseTime);
+        } else {
+            setTimeout(animateTitle, typingSpeed);
         }
-        setTimeout(animateTitle, typingSpeed);
     } else {
         current = current.slice(0, -1);
-        document.title = current;
+        document.title = current || placeholder; // never empty
         if (current.length === 0) {
             forward = true;
             index = 0;
-            setTimeout(animateTitle, typingSpeed); // pause before restarting
-            return;
+            setTimeout(animateTitle, typingSpeed);
+        } else {
+            setTimeout(animateTitle, deletingSpeed);
         }
-        setTimeout(animateTitle, deletingSpeed);
     }
 }
 
-window.addEventListener("load", () => {
-    animateTitle();
-});
+window.addEventListener("load", animateTitle);
 </script>
 
 
