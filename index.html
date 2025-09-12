@@ -4,39 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-  const fullTitle = "rax"; // full title you want
+  const fullTitle = "rax"; // your full title
   let current = "";
   let index = 0;
   let forward = true; // typing forward or deleting
-  let cursorVisible = true; // for blinking
+  let cursorVisible = true;
 
-  function typeTitle() {
-    // Type or delete letters
+  // Typing & deleting speed ranges (ms)
+  const typingSpeed = { min: 100, max: 250 };
+  const deletingSpeed = { min: 50, max: 150 };
+  const cursorBlinkSpeed = 500;
+
+  // Function to pick a random speed in a range
+  function randomSpeed(range) {
+    return Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
+  }
+
+  function updateTitle() {
     if (forward) {
       current += fullTitle[index];
       index++;
-      if (index === fullTitle.length) forward = false; // start deleting
+      if (index === fullTitle.length) forward = false; // start deleting after finished
     } else {
       current = current.slice(0, -1);
       if (current.length === 0) {
-        forward = true; 
+        forward = true;
         index = 0; // start typing again
       }
     }
 
-    // Add blinking cursor
-    const cursor = cursorVisible ? "|" : " ";
-    document.title = current + cursor;
+    document.title = current + (cursorVisible ? "|" : " ");
+
+    // Schedule next update with dynamic speed
+    const nextSpeed = forward ? randomSpeed(typingSpeed) : randomSpeed(deletingSpeed);
+    setTimeout(updateTitle, nextSpeed);
   }
 
-  // Update cursor visibility every 500ms for blinking
+  // Cursor blinking
   setInterval(() => {
     cursorVisible = !cursorVisible;
-  }, 500);
+  }, cursorBlinkSpeed);
 
-  // Update title every 300ms for typing/deleting
-  setInterval(typeTitle, 300);
+  // Start animation
+  window.onload = updateTitle;
 </script>
+
 
 
 
