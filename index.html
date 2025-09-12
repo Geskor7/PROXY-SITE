@@ -4,41 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-const fullText = "rax"; // text to animate
-let current = "";
-let index = 0;
-let forward = true; // typing or deleting
-const typingSpeed = 200; // ms per letter
-const deletingSpeed = 150; // ms per letter when deleting
-const pauseTime = 800; // pause at full text
-const placeholder = "\u200B"; // zero-width space to prevent empty title
+const titleText = "rax"; // text to animate
+let display = "";
+let position = 0;
+let direction = 1; // 1 = typing, -1 = deleting
+const speed = 150; // ms per step
+const pause = 800; // pause at full text
+const safeChar = "\u200B"; // invisible zero-width space, never empty
 
 function animateTitle() {
-    if (forward) {
-        current += fullText[index];
-        document.title = current;
-        index++;
-        if (index === fullText.length) {
-            forward = false;
-            setTimeout(animateTitle, pauseTime);
+    // Update displayed text
+    display = titleText.slice(0, position);
+    document.title = display || safeChar;
+
+    // Update position
+    if (direction === 1) {
+        if (position < titleText.length) {
+            position++;
+            setTimeout(animateTitle, speed);
         } else {
-            setTimeout(animateTitle, typingSpeed);
+            direction = -1;
+            setTimeout(animateTitle, pause);
         }
     } else {
-        current = current.slice(0, -1);
-        document.title = current || placeholder; // never empty
-        if (current.length === 0) {
-            forward = true;
-            index = 0;
-            setTimeout(animateTitle, typingSpeed);
+        if (position > 0) {
+            position--;
+            setTimeout(animateTitle, speed);
         } else {
-            setTimeout(animateTitle, deletingSpeed);
+            direction = 1;
+            setTimeout(animateTitle, speed);
         }
     }
 }
 
 window.addEventListener("load", animateTitle);
 </script>
+
 
 
 
