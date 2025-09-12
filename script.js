@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = "RAX";
     let nameText = '';
     let nameIndex = 0;
-    let isNameDeleting = false;
+    let isNameDeleting = true;
     let nameCursorVisible = true;
 
     function typeWriterName() {
