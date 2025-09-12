@@ -3,51 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-  const fullTitle = "rax"; // your full title
-  let current = "";
+ <script>
+  const titleSequence = ["r", "ra", "rax", "ra", "r", "ra", "r", "rax"];
   let index = 0;
-  let forward = true; // typing forward or deleting
-  let cursorVisible = true;
 
-  // Typing & deleting speed ranges (ms)
-  const typingSpeed = { min: 100, max: 250 };
-  const deletingSpeed = { min: 50, max: 150 };
-  const cursorBlinkSpeed = 500;
-
-  // Function to pick a random speed in a range
-  function randomSpeed(range) {
-    return Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
+  function animateTitle() {
+    document.title = titleSequence[index];
+    index = (index + 1) % titleSequence.length;
   }
 
-  function updateTitle() {
-    if (forward) {
-      current += fullTitle[index];
-      index++;
-      if (index === fullTitle.length) forward = false; // start deleting after finished
-    } else {
-      current = current.slice(0, -1);
-      if (current.length === 0) {
-        forward = true;
-        index = 0; // start typing again
-      }
-    }
-
-    document.title = current + (cursorVisible ? "|" : " ");
-
-    // Schedule next update with dynamic speed
-    const nextSpeed = forward ? randomSpeed(typingSpeed) : randomSpeed(deletingSpeed);
-    setTimeout(updateTitle, nextSpeed);
-  }
-
-  // Cursor blinking
-  setInterval(() => {
-    cursorVisible = !cursorVisible;
-  }, cursorBlinkSpeed);
-
-  // Start animation
-  window.onload = updateTitle;
+  // Start immediately, not waiting for full load
+  setInterval(animateTitle, 500);
 </script>
+
 </head>
 
     <!-- ADD THIS LINE FOR THE FAVICON -->
