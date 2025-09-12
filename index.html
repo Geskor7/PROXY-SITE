@@ -4,16 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-  const fullTitle = "rax"; // your full title
+  const fullTitle = "rax"; // Your full title
   let current = "";
   let index = 0;
   let forward = true; // typing forward or deleting
 
-  // Typing & deleting speed ranges (ms)
   const typingSpeed = { min: 150, max: 250 };
   const deletingSpeed = { min: 50, max: 150 };
 
-  // Function to pick a random speed in a range
   function randomSpeed(range) {
     return Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
   }
@@ -22,26 +20,25 @@
     if (forward) {
       current += fullTitle[index];
       index++;
-      if (index === fullTitle.length) forward = false; // start deleting after finished
+      if (index === fullTitle.length) forward = false;
     } else {
       current = current.slice(0, -1);
       if (current.length === 0) {
         forward = true;
-        index = 0; // start typing again
+        index = 0;
+        current = " "; // Keep a single space to prevent domain flash
       }
     }
 
-    // Only update the actual document title with current text (no cursor)
     document.title = current;
 
-    // Schedule next update with dynamic speed
     const nextSpeed = forward ? randomSpeed(typingSpeed) : randomSpeed(deletingSpeed);
     setTimeout(updateTitle, nextSpeed);
   }
 
-  // Start animation
   window.onload = updateTitle;
 </script>
+
 
 
 
