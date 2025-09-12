@@ -1,13 +1,13 @@
 // --- START: YOUR CUSTOM QUOTES ---
 const myQuotes = [
-    { quote: "i eat sand", author: "RAX" }, { quote: "i like eating dirt too :D", author: "RAX" }, { quote: "UHHHH... RTGNJKHJKNRTJOUKTH", author: "RAX" }
+    { quote: "enzy is the goat", author: "" }
 ];
 // --- END: YOUR CUSTOM QUOTES ---
 
 // --- CONFIGURATION - REPLACE THESE VALUES ---
-const DISCORD_USER_ID = '1356334846351245515';
-const CITY_NAME = 'no'; // real city for API
-const DISPLAY_CITY_NAME = 'UNKNOWN'; // used in UI
+const DISCORD_USER_ID = 'YOUR_DISCORD_ID_HERE';
+const OPENWEATHER_API_KEY = 'YOUR_OPENWEATHER_API_KEY_HERE'; 
+const CITY_NAME = 'Kandy';
 // --- END CONFIGURATION ---
 
 let activityCarouselInterval = null;
@@ -167,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherIcon = document.getElementById('weather-icon');
     const weatherTemp = document.getElementById('weather-temp');
     
-
     // Initialize audio player and add event listeners
     audioPlayer = document.getElementById('track-preview-player');
     const trackListEl = document.getElementById('spotify-track-list');
@@ -264,19 +263,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
         const timeString = now.toLocaleTimeString('en-US', {
             timeZone: 'Asia/Colombo',
-            hour: '2-digit'
+            hour: '2-digit',
             minute: '2-digit',
             hour12: true
         });
         localTime.textContent = timeString;
     }
 
-    } catch (error) {
-        console.error("Why are you looking at this?:", error);
-        const weatherTemp = document.getElementById('weather-temp');
-        if (weatherTemp) weatherTemp.textContent = 'X_X';
+    async function fetchWeather() {
+        if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
+            console.warn("OpenWeather API key not set. Skipping weather fetch.");
+            weatherTemp.textContent = "N/A";
+            return;
+        }
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&appid=${OPENWEATHER_API_KEY}&units=metric`;
+        
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
+            const data = await response.json();
+            
+            weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
+            weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            weatherIcon.alt = data.weather[0].description;
+        } catch (error) {
+            console.error("Failed to fetch weather data:", error);
+            weatherTemp.textContent = 'Error';
+        }
     }
-}
 
     function handleStartInteraction(event) {
         event.preventDefault();
@@ -331,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initializeVisitorCounter();
 
-    const startMessage = "​Click here to enter.";
+    const startMessage = "Click here to wake up the pixels!";
     let startTextContent = '';
     let startIndex = 0;
     let startCursorVisible = true;
@@ -350,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
     typeWriterStart();
 
-    const name = "ℜ𝔄𝔛";
+    const name = "enzy";
     let nameText = '';
     let nameIndex = 0;
     let isNameDeleting = false;
