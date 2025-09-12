@@ -4,22 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-const titles = ["r", "ra", "rax", "ra", "r"]; // sequence of title frames
+const fullText = "rax"; // text to animate
+let current = "";
 let index = 0;
-let fps = 10; // higher = faster animation
+let forward = true; // typing or deleting
+const speed = 200; // milliseconds per letter
 
 function animateTitle() {
-    document.title = titles[index];
-    index = (index + 1) % titles.length;
-    setTimeout(animateTitle, 1000 / fps); // smooth timing
+    if (forward) {
+        current += fullText[index];
+        index++;
+        if (index === fullText.length) forward = false; // start deleting
+    } else {
+        current = current.slice(0, -1);
+        if (current.length === 0) {
+            forward = true; 
+            index = 0;
+        }
+    }
+    document.title = current; // update title
+    setTimeout(animateTitle, speed);
 }
 
-// Start after page load
+// Start after page loads
 window.addEventListener("load", () => {
     animateTitle();
 });
 </script>
-
 
 
 </head>
