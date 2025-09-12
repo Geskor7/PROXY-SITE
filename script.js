@@ -1,6 +1,6 @@
 // --- START: YOUR CUSTOM QUOTES ---
 const myQuotes = [
-    { quote: "There’s no place like 127.0.0.1", author: "Austin Freeman" },{ quote: "doing "nmap -T4 127.0.0.1" doesnt make you scary", author: "" },{ quote: "i want sprite :'(", author: "RAX" }
+    { quote: "There’s no place like 127.0.0.1", author: "Austin Freeman" },{ quote: "doing "nmap -T4 127.0.0.1" doesnt make you scary", author: "r" },{ quote: "i want sprite :'(", author: "RAX" }
 ];
 // --- END: YOUR CUSTOM QUOTES ---
 
