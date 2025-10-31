@@ -349,24 +349,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initializeVisitorCounter();
 
-    const startMessage = "Click here to enter. EPILEPSY WARNING";
-    let startTextContent = '';
-    let startIndex = 0;
-    let startCursorVisible = true;
+    const startMessageLine1 = "Click here to enter";
+const startMessageLine2 = "EPILEPSY WARNING";
+let startTextContent = '';
+let startIndex = 0;
+let currentLine = 1;
+let startCursorVisible = true;
 
-    function typeWriterStart() {
-        if (startIndex < startMessage.length) {
-            startTextContent = startMessage.slice(0, startIndex + 1);
-            startIndex++;
-        }
-        startText.textContent = startTextContent + (startCursorVisible ? '|' : ' ');
+function typeWriterStart() {
+    if (currentLine === 1 && startIndex < startMessageLine1.length) {
+        startTextContent = startMessageLine1.slice(0, startIndex + 1);
+        startIndex++;
+    } else if (currentLine === 1 && startIndex === startMessageLine1.length) {
+        // Finished line 1, add line break and start line 2
+        startTextContent = startMessageLine1 + '<br>';
+        currentLine = 2;
+        startIndex = 0;
+    } else if (currentLine === 2 && startIndex < startMessageLine2.length) {
+        startTextContent = startMessageLine1 + '<br>' + startMessageLine2.slice(0, startIndex + 1);
+        startIndex++;
+    }
+    
+    startText.innerHTML = startTextContent + (startCursorVisible ? '|' : ' ');
+    
+    if (!(currentLine === 2 && startIndex === startMessageLine2.length)) {
         setTimeout(typeWriterStart, 100);
     }
-    setInterval(() => {
-        startCursorVisible = !startCursorVisible;
-        startText.textContent = startTextContent + (startCursorVisible ? '|' : ' ');
-    }, 500);
-    typeWriterStart();
+}
+
+setInterval(() => {
+    startCursorVisible = !startCursorVisible;
+    startText.innerHTML = startTextContent + (startCursorVisible ? '|' : ' ');
+}, 500);
+typeWriterStart();
 
     const name = "RAX";
     let nameText = '';
