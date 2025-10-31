@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initializeVisitorCounter();
 
-    const startMessage = "Click here to enter.";
+    const startMessage = "Click here to enter. EPILEPSY WARNING";
     let startTextContent = '';
     let startIndex = 0;
     let startCursorVisible = true;
