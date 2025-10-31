@@ -373,7 +373,8 @@ function typeWriterStart() {
     startText.innerHTML = startTextContent + (startCursorVisible ? '|' : ' ');
     
     if (!(currentLine === 2 && startIndex === startMessageLine2.length)) {
-        setTimeout(typeWriterStart, 100);
+        setTimeout(typeWriterStart, 40);
+        
     }
 }
 
