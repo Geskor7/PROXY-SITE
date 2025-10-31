@@ -38,7 +38,7 @@ function initMedia() {
 
 const TRAIL_EMIT_INTERVAL = 30;
 const TRAIL_LIFETIME = 2.2;
-const MATRIX_CHARS = "01ABCDEF!@#$%^&*()_+=-{}[]|:;<>?/.,`~";
+const MATRIX_CHARS = "NIGGA";
 const TRAIL_VERTICAL_DROP_PX = 150;
 const TRAIL_INITIAL_SCALE = 1.0;
 const TRAIL_FINAL_SCALE = 0.5;
