@@ -349,8 +349,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initializeVisitorCounter();
 
-    const startMessageLine1 = "Click here to enter";
-const startMessageLine2 = "EPILEPSY WARNING";
+  const startMessageLine1 = "Click here to enter";
+const startMessageLine2 = "EPILEPSY WARNING - This site contains flashing lights and rapid animations that may trigger seizures";
+const startMessageLine3 = "By clicking, you accept all liability and risks";
 let startTextContent = '';
 let startIndex = 0;
 let currentLine = 1;
@@ -362,21 +363,34 @@ function typeWriterStart() {
         startIndex++;
     } else if (currentLine === 1 && startIndex === startMessageLine1.length) {
         // Finished line 1, add line break and start line 2
-        startTextContent = startMessageLine1 + '<br>';
+        startTextContent = startMessageLine1 + '<br><br><span style="color: #ff4444; font-weight: bold;">';
         currentLine = 2;
         startIndex = 0;
     } else if (currentLine === 2 && startIndex < startMessageLine2.length) {
-        startTextContent = startMessageLine1 + '<br>' + startMessageLine2.slice(0, startIndex + 1);
+        startTextContent = startMessageLine1 + '<br><br><span style="color: #ff4444; font-weight: bold;">' + startMessageLine2.slice(0, startIndex + 1) + '</span>';
+        startIndex++;
+    } else if (currentLine === 2 && startIndex === startMessageLine2.length) {
+        // Finished line 2, add line break and start line 3
+        startTextContent = startMessageLine1 + '<br><br><span style="color: #ff4444; font-weight: bold;">' + startMessageLine2 + '</span><br><br><span style="color: #ff4444; font-weight: bold;">';
+        currentLine = 3;
+        startIndex = 0;
+    } else if (currentLine === 3 && startIndex < startMessageLine3.length) {
+        startTextContent = startMessageLine1 + '<br><br><span style="color: #ff4444; font-weight: bold;">' + startMessageLine2 + '</span><br><br><span style="color: #ff4444; font-weight: bold;">' + startMessageLine3.slice(0, startIndex + 1) + '</span>';
         startIndex++;
     }
     
     startText.innerHTML = startTextContent + (startCursorVisible ? '|' : ' ');
     
-    if (!(currentLine === 2 && startIndex === startMessageLine2.length)) {
-        setTimeout(typeWriterStart, 40);
-        
+    if (!(currentLine === 3 && startIndex === startMessageLine3.length)) {
+        setTimeout(typeWriterStart, 50);
     }
 }
+
+setInterval(() => {
+    startCursorVisible = !startCursorVisible;
+    startText.innerHTML = startTextContent + (startCursorVisible ? '|' : ' ');
+}, 300);
+typeWriterStart();
 
 setInterval(() => {
     startCursorVisible = !startCursorVisible;
