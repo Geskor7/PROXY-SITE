@@ -18,7 +18,7 @@ let activityCarouselInterval = null;
 let activityUpdateInterval = null;
 let wsHeartbeatInterval = null; 
 let quoteTimeout; 
-let finalVisitorCount = 0; //Global Varibale for the View count so its not stuck at NaN
+let finalVisitorCount = 0; // <-- ADDED THIS LINE
 // --- Global variables for the audio player ---
 let audioPlayer = null;
 let currentPlayingTrackDiv = null;
