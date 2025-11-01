@@ -1,5 +1,3 @@
-// --- START: YOUR CUSTOM QUOTES ---
-
 const myQuotes = [
     { quote: "Im a beamerboy", author: "RAX" },
     { quote: "uuuhhhh uhhmmm uhhhh uhhmmm i forgor...", author: "" },
@@ -18,7 +16,7 @@ let activityCarouselInterval = null;
 let activityUpdateInterval = null;
 let wsHeartbeatInterval = null; 
 let quoteTimeout; 
-let finalVisitorCount = 0; // <-- ADDED THIS LINE
+
 // --- Global variables for the audio player ---
 let audioPlayer = null;
 let currentPlayingTrackDiv = null;
@@ -167,6 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const profilePicture = document.querySelector('.profile-picture');
     const customCursor = document.querySelector('.custom-cursor');
     const cursor = customCursor;
+    const localTime = document.getElementById('local-time');
+    const weatherIcon = document.getElementById('weather-icon');
     const weatherTemp = document.getElementById('weather-temp');
     
     // Initialize audio player and add event listeners
@@ -272,26 +272,27 @@ document.addEventListener('DOMContentLoaded', () => {
         localTime.textContent = timeString;
     }
 
-   async function fetchWeather() {
-    if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
-        console.warn("OpenWeather API key not set. Skipping weather fetch.");
-        weatherTemp.textContent = "X_X";
-        return;
-    }
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${OPENWEATHER_API_KEY}`;
-    
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
-        const data = await response.json();
+    async function fetchWeather() {
+        if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
+            console.warn("OpenWeather API key not set. Skipping weather fetch.");
+            weatherTemp.textContent = "X_X";
+            return;
+        }
+        const apiUrl = ``;
         
-        weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
-
-    } catch (error) {
-        console.error("Failed to fetch weather data:", error);
-        weatherTemp.textContent = 'X_X';
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
+            const data = await response.json();
+            
+            weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
+            weatherIcon.src = ``;
+            weatherIcon.alt = data.weather[0].description;
+        } catch (error) {
+            console.error("Failed to fetch weather data:", error);
+            weatherTemp.textContent = 'X_X';
+        }
     }
-}
 
     function handleStartInteraction(event) {
         event.preventDefault();
@@ -300,11 +301,10 @@ document.addEventListener('DOMContentLoaded', () => {
         backgroundVideo.play().catch(err => console.error("Failed to play background video after user interaction:", err));
         profileBlock.classList.remove('hidden');
         gsap.fromTo(profileBlock, { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' });
-        initializeVisitorCounter(); // ADD THIS LINE
         animateCounter();
         if (!isTouchDevice) startTrailInterval();
         typeWriterName();
-        startQuoteCycle();
+        startQuoteCycle(); 
         
         updateLocalTime();
         fetchWeather();
@@ -329,30 +329,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-function initializeVisitorCounter() {
-    let totalVisitors = localStorage.getItem('totalVisitorCount');
-    const hasVisited = localStorage.getItem('hasVisited');
-    
-    // Initialize if first time
-    if (!totalVisitors) {
-        totalVisitors = 0;
+    function initializeVisitorCounter() {
+        let totalVisitors = localStorage.getItem('totalVisitorCount');
+        if (!totalVisitors) {
+            totalVisitors = 7340;
+            localStorage.setItem('totalVisitorCount', totalVisitors);
+        } else {
+            totalVisitors = parseInt(totalVisitors);
+        }
+        const hasVisited = localStorage.getItem('hasVisited');
+        if (!hasVisited) {
+            totalVisitors++;
+            localStorage.setItem('totalVisitorCount', totalVisitors);
+            localStorage.setItem('hasVisited', 'true');
+        }
+        finalVisitorCount = totalVisitors;
     }
-    
-    // Convert to number
-    totalVisitors = parseInt(totalVisitors) || 0;
-    
-    // Increment only for new visitors
-    if (!hasVisited) {
-        totalVisitors++;
-        localStorage.setItem('hasVisited', 'true');
-    }
-    
-    // Store and set the final count
-    localStorage.setItem('totalVisitorCount', totalVisitors);
-    finalVisitorCount = totalVisitors; 
-}
+    initializeVisitorCounter();
 
-  const startMessageLine1 = "Click here to enter";
+    const startMessageLine1 = "Click here to enter";
 const startMessageLine2 = "EPILEPSY WARNING - This site contains flashing lights and rapid animations that may trigger seizures";
 const startMessageLine3 = "By clicking, you accept all liability and risks";
 let startTextContent = '';
@@ -388,18 +383,7 @@ function typeWriterStart() {
         setTimeout(typeWriterStart, 50);
     }
 }
-
-setInterval(() => {
-    startCursorVisible = !startCursorVisible;
-    startText.innerHTML = startTextContent + (startCursorVisible ? '|' : ' ');
-}, 300);
-typeWriterStart();
-
-setInterval(() => {
-    startCursorVisible = !startCursorVisible;
-    startText.innerHTML = startTextContent + (startCursorVisible ? '|' : ' ');
-}, 500);
-typeWriterStart();
+    typeWriterStart();
 
     const name = "RAX";
     let nameText = '';
