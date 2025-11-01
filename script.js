@@ -331,23 +331,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function initializeVisitorCounter() {
-        let totalVisitors = localStorage.getItem('totalVisitorCount');
-        if (!totalVisitors) {
-            totalVisitors = 0;
-            localStorage.setItem('totalVisitorCount', totalVisitors);
-        } else {
-            totalVisitors = parseInt(totalVisitors);
-        }
-        const hasVisited = localStorage.getItem('hasVisited');
-        if (!hasVisited) {
-            totalVisitors++;
-            localStorage.setItem('totalVisitorCount', totalVisitors);
-            localStorage.setItem('hasVisited', 'true');
-        }
-        finalVisitorCount = totalVisitors;
+   function initializeVisitorCounter() {
+    let totalVisitors = localStorage.getItem('totalVisitorCount');
+    const hasVisited = localStorage.getItem('hasVisited');
+    
+    if (!totalVisitors) {
+        totalVisitors = 0; // Start at 0
+        localStorage.setItem('totalVisitorCount', totalVisitors);
+    } else {
+        totalVisitors = parseInt(totalVisitors);
     }
-    initializeVisitorCounter();
+    
+    if (!hasVisited) {
+        // Don't increment for the first view
+        localStorage.setItem('hasVisited', 'true');
+    }
+    
+    finalVisitorCount = totalVisitors;
+}
 
   const startMessageLine1 = "Click here to enter";
 const startMessageLine2 = "EPILEPSY WARNING - This site contains flashing lights and rapid animations that may trigger seizures";
