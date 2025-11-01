@@ -286,8 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             
             weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
-            weatherIcon.src = ``;
-            weatherIcon.alt = data.weather[0].description;
+
         } catch (error) {
             console.error("Failed to fetch weather data:", error);
             weatherTemp.textContent = 'X_X';
