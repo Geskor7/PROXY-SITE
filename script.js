@@ -18,7 +18,7 @@ let activityCarouselInterval = null;
 let activityUpdateInterval = null;
 let wsHeartbeatInterval = null; 
 let quoteTimeout; 
-
+let finalVisitorCount = 0; //Global Varibale for the View count so its not stuck at NaN
 // --- Global variables for the audio player ---
 let audioPlayer = null;
 let currentPlayingTrackDiv = null;
@@ -351,7 +351,7 @@ function initializeVisitorCounter() {
     
     // Store and set the final count
     localStorage.setItem('totalVisitorCount', totalVisitors);
-    finalVisitorCount = totalVisitors;
+    finalVisitorCount = totalVisitors; 
 }
 
   const startMessageLine1 = "Click here to enter";
