@@ -331,23 +331,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-   function initializeVisitorCounter() {
+  function initializeVisitorCounter() {
     let totalVisitors = localStorage.getItem('totalVisitorCount');
     const hasVisited = localStorage.getItem('hasVisited');
     
     if (!totalVisitors) {
-        totalVisitors = 0; // Start at 0
-        localStorage.setItem('totalVisitorCount', totalVisitors);
+        totalVisitors = 0;
     } else {
         totalVisitors = parseInt(totalVisitors);
     }
     
     if (!hasVisited) {
-        // Don't increment for the first view
         localStorage.setItem('hasVisited', 'true');
     }
     
-    finalVisitorCount = totalVisitors;
+    // Make sure it's a number
+    finalVisitorCount = parseInt(totalVisitors) || 0;
+    
+    // Store as number
+    localStorage.setItem('totalVisitorCount', finalVisitors);
 }
 
   const startMessageLine1 = "Click here to enter";
