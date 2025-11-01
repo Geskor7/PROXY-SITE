@@ -348,8 +348,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make sure it's a number
     finalVisitorCount = parseInt(totalVisitors) || 0;
     
-    // Store as number
-    localStorage.setItem('totalVisitorCount', finalVisitorsCount); //Note its called finalVisitorsCount not finalVisitors
+    // Store as number - FIXED THIS LINE:
+    localStorage.setItem('totalVisitorCount', finalVisitorCount); // Changed finalVisitors to finalVisitorCount
 }
 
   const startMessageLine1 = "Click here to enter";
