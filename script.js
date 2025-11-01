@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const profilePicture = document.querySelector('.profile-picture');
     const customCursor = document.querySelector('.custom-cursor');
     const cursor = customCursor;
-     line 172 const weatherTemp = document.getElementById('weather-temp');
+    const weatherTemp = document.getElementById('weather-temp');
     
     // Initialize audio player and add event listeners
     audioPlayer = document.getElementById('track-preview-player');
