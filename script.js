@@ -303,10 +303,11 @@ document.addEventListener('DOMContentLoaded', () => {
         backgroundVideo.play().catch(err => console.error("Failed to play background video after user interaction:", err));
         profileBlock.classList.remove('hidden');
         gsap.fromTo(profileBlock, { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' });
+        initializeVisitorCounter(); // ADD THIS LINE
         animateCounter();
         if (!isTouchDevice) startTrailInterval();
         typeWriterName();
-        startQuoteCycle(); 
+        startQuoteCycle();
         
         updateLocalTime();
         fetchWeather();
