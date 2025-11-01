@@ -272,26 +272,26 @@ document.addEventListener('DOMContentLoaded', () => {
         localTime.textContent = timeString;
     }
 
-    async function fetchWeather() {
-        if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
-            console.warn("OpenWeather API key not set. Skipping weather fetch.");
-            weatherTemp.textContent = "X_X";
-            return;
-        }
-        const apiUrl = ``;
-        
-        try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
-            const data = await response.json();
-            
-            weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
-
-        } catch (error) {
-            console.error("Failed to fetch weather data:", error);
-            weatherTemp.textContent = 'X_X';
-        }
+   async function fetchWeather() {
+    if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'YOUR_OPENWEATHER_API_KEY_HERE') {
+        console.warn("OpenWeather API key not set. Skipping weather fetch.");
+        weatherTemp.textContent = "X_X";
+        return;
     }
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${OPENWEATHER_API_KEY}`;
+    
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`Weather API request failed: ${response.status}`);
+        const data = await response.json();
+        
+        weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
+
+    } catch (error) {
+        console.error("Failed to fetch weather data:", error);
+        weatherTemp.textContent = 'X_X';
+    }
+}
 
     function handleStartInteraction(event) {
         event.preventDefault();
