@@ -331,25 +331,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-  function initializeVisitorCounter() {
+function initializeVisitorCounter() {
     let totalVisitors = localStorage.getItem('totalVisitorCount');
     const hasVisited = localStorage.getItem('hasVisited');
     
+    // Initialize if first time
     if (!totalVisitors) {
         totalVisitors = 0;
-    } else {
-        totalVisitors = parseInt(totalVisitors);
     }
     
+    // Convert to number
+    totalVisitors = parseInt(totalVisitors) || 0;
+    
+    // Increment only for new visitors
     if (!hasVisited) {
+        totalVisitors++;
         localStorage.setItem('hasVisited', 'true');
     }
     
-    // Make sure it's a number
-    finalVisitorCount = parseInt(totalVisitors) || 0;
-    
-    // Store as number - FIXED THIS LINE:
-    localStorage.setItem('totalVisitorCount', finalVisitorCount); // Changed finalVisitors to finalVisitorCount
+    // Store and set the final count
+    localStorage.setItem('totalVisitorCount', totalVisitors);
+    finalVisitorCount = totalVisitors;
 }
 
   const startMessageLine1 = "Click here to enter";
